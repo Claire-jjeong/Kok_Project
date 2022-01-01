@@ -1,0 +1,129 @@
+@charset "EUC-KR";
+
+/* 현재 html 각주 */
+body
+{
+	background: grey;
+}
+
+.box /*class="box"*/
+{
+	width:1000px; /* FAQ 전체 창 너비 조절 가능 */
+	margin: 75px auto; 
+	background: #fff;
+	border-radius: 7px;
+	box-shadow: 1px 2px 4px rgba(0,0,0,.7);
+}
+
+.box .heading /* box안에 heading, 자주묻는 질문 */
+{
+	background: #00D9A5;
+	border-radius: 7px 7px 0px 0px; /* 민트색 밑에 radius는 0 */
+	padding: 10px;
+	color: #fff;
+	text-align: center;
+	font-family: "Rubik";
+}
+
+.faqs /* div의 class="faqs", 물어볼 사항들*/
+{
+	padding: 10px 20px;
+}
+
+::-webkit-details-marker
+{
+	float:right;
+	margin-top: 3px;
+	background: blue;
+	padding: 10px;
+}
+
+/* 답변 텍스트도 질문 텍스트와 같은 양식으로 통일하고 싶을 때
+details
+{
+	background: #f6f6f6; 
+	padding: 5px 10px;
+	border-radius: 7px;
+	margin-top: 0px;
+	font-family: "Rubik";
+	font-size: 16px;
+	letter-spacing: 1px;
+	text-align: center;
+	outline: none;
+}
+*/
+details summary
+{
+	background: #f6f6f6; 
+	padding: 10px 20px;
+	border-radius: 7px;
+	margin-top: 0px;
+	font-family: "Rubik";
+	font-size: 16px;
+	letter-spacing: 1px;
+	text-align: center;
+	outline: none;
+}
+
+details summary:hover
+{
+	color : #FE2E64;
+}
+
+/*text 속성 바꿔보기*/
+
+
+/* 아래부터는 기존 css각주 */
+
+.accordion 
+{
+	text-align: center;
+}
+
+input[id*="answer"]
+{
+	display:none;
+}
+input[id*="answer"]+label
+{
+	display:block;
+	padding:20px;
+	border:1px solid #232188;
+	border-bottom:5;
+	color:efff;
+	font-weight:30;
+	background: #00D9A5;
+	cursor:pointer;
+	position:relative;
+	font-color: #F5F9F6;
+}
+
+input[id*="answer"]+label em
+{
+	position:absolute;
+	top:50%;
+	right:100px;
+	width:30px;
+	height:30px;
+	margin-top:-15px;
+	display:inline-block;
+	background:url("../assets/img/arrow02.png") 0 0 no-repeat;
+}
+input[id*="answer"]:checked + label + div
+{
+	max-height:0;
+	transtion: all 0.7s;
+	overflow:hidden;
+	font-size:15px;
+}
+
+input[id*="answer"]:checked+label+div p 
+{
+	display:inline+block;
+	padding:20px;
+	max-height:100px;
+}
+input[id*="answer"]:checked+label em
+{
+	background-position:0 -30px;
+}

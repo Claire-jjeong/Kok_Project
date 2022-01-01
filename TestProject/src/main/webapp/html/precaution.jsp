@@ -1,0 +1,369 @@
+<%@page import="com.smhrd.UserVO"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>접종정보</title>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/maicons.css">
+
+		<link rel="stylesheet" href="../assets/css/bootstrap.css">
+		
+		<link rel="stylesheet" href="../assets/vendor/owl-carousel/css/owl.carousel.css">
+		
+		<link rel="stylesheet" href="../assets/vendor/animate/animate.css">
+		
+		<link rel="stylesheet" href="../assets/css/theme.css">
+		
+</head>
+	<body class="is-preload">
+	
+	<%
+      UserVO vo = (UserVO)session.getAttribute("vo");
+      %>
+      
+      
+		<div id="page-wrapper">
+		<div class="back-to-top"></div>
+
+			<!-- Header -->
+				<header>  
+		
+    <!-- .topbar -->
+	    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+	      <div class="container">
+	        <a class="navbar-brand" href="VaccineRL.html"><span class="text-primary">Yak</span>-Kok</a>
+	
+	       
+	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+	          <span class="navbar-toggler-icon"></span>
+	        </button>
+	
+	        <div class="collapse navbar-collapse" id="navbarSupport">
+	          <ul class="navbar-nav ml-auto">
+	            <li class="nav-item">
+	               <a class="nav-link" href="about.jsp">약콕이란?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../VaccineRL2.jsp">백신예약/조회</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="precaution.jsp">백신정보</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="faqForm.jsp">광고/FAQ</a>
+            </li>
+           <%
+                  if(vo == null){ //로그인 전
+                     out.print("<li class='nav-item'><a class='btn btn-primary ml-lg-3' href='html/loginForm.html'>로그인/회원가입</a></li>");
+                  }else{
+                     //관리자 계정으로 로그인 했을 경우 모든 회원정보 볼 수 있도록
+                     //로그인한 회원의 이메일이 admin인 경우에는 회원전체목록이 보이게 
+                     //로그인한 회원의 이메일이 일반 회원인 경우에는 회원정보 수정이 보이게
+                     if(vo.getUser_id().equals("admin")){
+                        out.print("<li class='nav-item'><a class='btn btn-primary ml-lg-3' href = 'selectUser.jsp'>회원전체목록</a>");
+                     }else{
+                        out.print("<li class='nav-item'><a class='btn btn-primary ml-lg-3' a href='../Mypage.jsp'>마이페이지</a>");
+                     }
+                     out.print("<li class='nav-item'><a class='btn btn-primary ml-lg-3' a href='../LogoutService'>로그아웃</a>");
+                  }
+                  
+
+                  %>
+	          </ul>
+	        </div> <!-- .navbar-collapse -->
+	      </div> <!-- .container -->
+	    </nav>
+	  </header>
+
+	  <!-- 헤더 bar -->
+	 
+	<div class="page-banner overlay-dark bg-image" style="background-image: url(../assets/img/bg_image_1.jpg);">
+    <div class="banner-section">
+      <div class="container text-center wow fadeInUp">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+   
+          </ol>
+       
+        </nav>
+        <h1 class="font-weight-normal">백신정보</h1>
+      </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+  </div> <!-- .page-banner -->
+
+			 
+	
+
+			<!-- Main -->
+				  <div class="page-section pb-0">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 py-3 wow fadeInUp">
+            <h1>접종 전/후 주의사항</h1><br>
+            <p class="text-grey mb-4">예방접종이란 전염성 질환 발생의 예방을 위하여 미생물의 병원성을 죽이거나 약하게 하여 사람에게 투여하는 것입니다.<br> 
+            성인 예방접종은 소아 때 예방접종을 시행하였지만, 지속적인 예방 효과를 위해 성인에서 추가 접종이 필요한 것들과 소아에서보다는 성인에서 예방 효과가 더 큰 예방접종 및 특정 전염성 질환의 발생 위험이 높은 성인(의료인 포함)에게 필요한 예방접종을 포함합니다.
+</p>
+            
+          </div>
+          <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
+            <div class="img-place custom-img-1">
+              <img src="../assets/img/bg-doctor.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .bg-light -->
+  </div> <!-- .bg-light -->
+        <div class="page-section">
+    <div class="container">
+      <h1 class="text-center mb-5 wow fadeInUp">백신 종류별 특징</h1>
+
+      <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
+        <div class="item">
+          <div class="card-doctor">
+          	 
+            <div class="header">
+            
+              
+               <div class= "text">
+          		 <img src="../assets/img/doctors/flu.jpeg" alt="">
+               
+               </div>
+            
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >매년 유행하는 치명적인 독감</span><br><br>
+          		 
+               <a class = "text-light" style = "font-size : 11px" >감기 증상과 비슷하지만 면역력이 약한 사람의 경우 죽음에도 이를 수 있는 위험한 병입니다.
+               가족, 동료에게도 쉽게 전염이 가능하기 때문에 건강한 사람도 접종이 중요합니다.</a>
+                   
+                  </div>
+                </div>
+           
+                <div class="body" id = "Flu">
+                  <p class="text-xl mb-0">독감</p>
+                  <span class="text-sm text-grey">Flu</span>
+                </div>
+              </div>
+            </div>
+            
+             <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/var.jpg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >수두 감염자의 35% 사망</span><br><br>
+               <a class = "text-light" style = "font-size : 11px" >법정 제2급 감염병으로 지정되어있는 병으로, 전염성과 합병증이 강합니다.
+               빨간 물집과 발열, 두통 등이 발생합니다.</a>
+                  </div>
+                </div>
+                <div class="body" id = "Var">
+                  <p class="text-xl mb-0">수두</p>
+                  <span class="text-sm text-grey">Var</span>
+                </div>
+              </div>
+            </div>
+        
+        
+         <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/Hzv.jpeg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >수두에 걸린 사람 중 30% 발생</span><br><br>
+               <a class = "text-light" style = "font-size : 11px" >수두와 대상포진은 같은 바이러스 질환이며, 수두 바이러스에 감염되면 바이러스는 평생 몸안에 존재하게 되며 50세이후 대상포진 발생 빈도가 증가합니다.
+               발진과 수포가 발생합니다.</a>
+                  </div>
+                </div>
+                <div class="body" id = "Hzv">
+                  <p class="text-xl mb-0">대상포진</p>
+                  <span class="text-sm text-grey">Hzv</span>
+                </div>
+              </div>
+            </div>
+        
+        <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/Ppsv.jpg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >2019년 사망원인 3위</span><br><br>
+               <a class = "text-light" style = "font-size : 11px" >폐를 직접적으로 침범하는 위험한 질병입니다.
+               호흡곤란, 흉통, 기침이 발생합니다.</a>
+                  </div>
+                </div>
+                <div class="body" id = "ppsv">
+                  <p class="text-xl mb-0">폐렴구균</p>
+                  <span class="text-sm text-grey">PPSV</span>
+                </div>
+              </div>
+            </div>
+        
+        <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/td.jpeg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :13px" >면역력이 쉽게 생기지 않는 질병</span><br><br>
+               <a class = "text-light" style = "font-size : 9px" >면역이 장기간 지속되지 않으므로 3가지 질병을 함께 접종 권장 드립니다.<br>
+              파상풍 : 근육 경련 및 호흡마비 증상<br>
+              디프테리아 : 호흡과 삼킴이 힘들어지는 증상<br>
+              백일해 : 기침과 함께 발작과 구토 증상</a>
+                  </div>
+                </div>
+                <div class="body" id = "Td">
+                  <p class="text-sm mb-0">파상풍/디프테리아/백일해</p>
+                  <span class="text-sm text-grey">Td</span>
+                </div>
+              </div>
+            </div>
+            
+             <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/hepA.jpg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >치료제가 없는 간질환</span><br><br>
+               <a class = "text-light" style = "font-size : 11px" >위생이 좋지 않은 곳에서 주로 감염이 됩니다. <br>
+               복부통증, 피로감, 구토 등이 발생합니다.</a>
+                  </div>
+                </div>
+                <div class="body" id = "hepA">
+                  <p class="text-xl mb-0">A형 간염</p>
+                  <span class="text-sm text-grey">hepA</span>
+                </div>
+              </div>
+            </div>
+            
+   			 <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/hepB.jpg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >간염 환자 중 86%</span><br><br>
+               <a class = "text-light" style = "font-size : 11px" >출산 시 감염이 되거나 감염된 혈액 등 체액에 의해 감염됩니다.<br>
+               B형 간염이 지속되면 간경화증이나 간암으로 진행될 수 있습니다.</a>
+                  </div>
+                </div>
+                <div class="body" id = "hepB">
+                  <p class="text-xl mb-0">B형 간염</p>
+                  <span class="text-sm text-grey">hepB</span>
+                </div>
+              </div>
+            </div>
+            
+             <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/mcv4.jpeg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >패혈증을 일으키는 중증 급성 감염병</span><br><br>
+               <a class = "text-light" style = "font-size : 11px" >빠르게 진행하는 세균 감염으로 두통,발열, 오심등이 급격히 시작됩니다.</a>
+                  </div>
+                </div>
+                <div class="body" id = "mcv4">
+                  <p class="text-xl mb-0">수막구균</p>
+                  <span class="text-sm text-grey">mcv4</span>
+                </div>
+              </div>
+            </div>
+            
+              <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/hib.jpeg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >수막염, 후두개염 질환의 흔한 원인균</span><br><br>
+               <a class = "text-light" style = "font-size : 11px" >주로 소아에게 발생하며, 뇌수막염, 중이염, 부비동염, 후두개염, 폐렴의 중요한 원인균입니다.</a>
+                  </div>
+                </div>
+                <div class="body" id = "hib">
+                  <p class="text-sm mb-0">B형 헤모필루스 인플루엔자</p>
+                  <span class="text-sm text-grey">hib</span>
+                </div>
+              </div>
+            </div>
+            
+             <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+               <div class= "text">
+          		 <img src="../assets/img/doctors/ipv.jpeg" alt="">
+               </div>
+                  <div class="meta" align="center" >
+                  <span class = "text-light" style = "font-size :17px" >폴리오 바이러스에 의한 전염성 질환 </span><br><br>
+               <a class = "text-light" style = "font-size : 11px" >'분변-경구' 또는 '경구-경구' 감염을 통해 전파되며 오염된 음식물을 통해서도 전파가 가능합니다.</a>
+                  </div>
+                </div>
+                <div class="body" id = "ipv">
+                  <p class="text-sm mb-0">폴리오</p>
+                  <span class="text-sm text-grey">ipv</span>
+                </div>
+              </div>
+            </div>
+            
+            
+      <div class="page-section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 py-3 wow zoomIn">
+          <div class="card-service">
+            <div class="circle-shape bg-secondary text-white">
+              <span class="mai-chatbubbles-outline"></span>
+            </div>
+            <p><span>Chat</span> with a doctors</p>
+          </div>
+        </div>
+        <div class="col-md-4 py-3 wow zoomIn">
+          <div class="card-service">
+            <div class="circle-shape bg-primary text-white">
+              <span class="mai-shield-checkmark"></span>
+            </div>
+            <p><span>One</span>-Health Protection</p>
+          </div>
+        </div>
+        <div class="col-md-4 py-3 wow zoomIn">
+          <div class="card-service">
+            <div class="circle-shape bg-accent text-white">
+              <span class="mai-basket"></span>
+            </div>
+            <p><span>One</span>-Health Pharmacy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  <script src="../assets/js/jquery-3.5.1.min.js"></script>
+
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="../assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
+
+<script src="../assets/vendor/wow/wow.min.js"></script>
+
+<script src="../assets/js/theme.js"></script>
+
+	</body>
+</html>
